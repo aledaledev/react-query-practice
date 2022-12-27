@@ -5,7 +5,8 @@ export interface CartContext {
     removeToCart:(id:string) => void,
     cart:CartProducts[],
     setProducts:(value:ProductProps[])=>void,
-    totalQuantity:()=>number
+    totalQuantity:()=>number,
+    removeItem:(id:string) => void
 }
 
 export interface ProductProps {

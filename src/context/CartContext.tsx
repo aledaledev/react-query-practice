@@ -18,20 +18,20 @@ export const CartProvider = ({children}: {children:ReactNode}) => {
   }
 
   const addToCart = (id:string):void => {
-    const product = products?.find(({_id})=> _id===id ) as ProductProps
     const inCart = cart.some(({product})=> product._id===id)
 
     if(inCart){
       const cartProduct = cart.find(item => item.product._id===id) as CartProducts
       const indexProduct = cart.findIndex(({product}) => product._id===id)
       const productAdded = {
-        product,
+        product:cartProduct.product,
         quantity:cartProduct.quantity+1
       }
       const updateCart = [...cart]
       updateCart[indexProduct]=productAdded
       setCart(updateCart)
     } else {
+      const product = products?.find(({_id})=> _id===id ) as ProductProps
       const productAdded = {
         product,
         quantity:1
@@ -57,11 +57,16 @@ export const CartProvider = ({children}: {children:ReactNode}) => {
     }
   }
 
+  const removeItem = (id:string) => {
+    const filteredCart = cart.filter(({product}) => product._id!==id)
+    setCart(filteredCart)
+  }
+
   const totalQuantity = ():number => {
     return +(cart.map(({product,quantity}) => product.price*quantity).reduce((prev,cur) => prev+cur)).toFixed(2)
   }
 
-  return <CartContext.Provider value={{openCart, toggleCart,addToCart, cart, removeToCart, setProducts,totalQuantity}}>
+  return <CartContext.Provider value={{openCart, toggleCart,addToCart, cart, removeToCart, setProducts,totalQuantity,removeItem}}>
     {children}
     </CartContext.Provider>
 }

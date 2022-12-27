@@ -35,7 +35,6 @@ const ProductList = () => {
         return <p>Error</p>
     }
 
-    //IoCartOutline
   return (
     <div className=''>
         {!openCart?<button onClick={toggleCart} className='fixed z-10 right-6 top-3 border-2 rounded-full p-5 border-zinc-500 bg-zinc-50'><AiOutlineShoppingCart style={{transform:'scale(1.8)', color:'black'}}/></button>:null}
@@ -46,10 +45,10 @@ const ProductList = () => {
             <ProductCard key={product._id} product={product}/>
         ))}
         </div>
-        <p>pages:</p>
-        <div className='flex gap-2'>
-          <button onClick={() => setPage(1)}>1</button>
-          <button onClick={() => setPage(2)}>2</button>
+        <p className='text-center'>pages</p>
+        <div className='flex justify-center gap-3 mt-1 mb-3'>
+          <button className={`text-lg ${page===1?'text-green-700 underline':'text-zinc-800'}`} onClick={() => setPage(1)}>1</button>
+          <button className={`text-lg ${page===2?'text-green-700 underline':'text-zinc-700'}`} onClick={() => setPage(2)}>2</button>
         </div>
     </div>
   )

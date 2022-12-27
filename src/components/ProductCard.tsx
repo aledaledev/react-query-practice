@@ -16,7 +16,7 @@ const ProductCard = ({product}:{product:ProductProps}) => {
       <div onMouseEnter={()=>setIsHover(true)} onMouseLeave={()=>setIsHover(false)}>
         <img src={image} style={{width: 'auto', height:'10rem'}}/>
       </div>
-      <div className='bg-zinc-100 w-full relative px-2 py-1'>
+      <div className='flex flex-col justify-between bg-zinc-100 w-full relative px-2 py-1 h-full'>
         <h5 className='text-lg font-light leading-5 my-2'>{name}</h5>
         {
           isHover?<div className='bg-zinc-100 border border-zinc-300 p-1 absolute z-10 w-48 -right-40 -top-32'>
@@ -27,9 +27,9 @@ const ProductCard = ({product}:{product:ProductProps}) => {
           </div>:null
         }
         <p className='text-sm font-light'>Price: <span className='text-base font-sans font-medium'>${price}</span></p>
-          {currentQuantity===0?<button onClick={() =>addToCart(id)} className='block mx-auto bg-emerald-600 text-zinc-50 p-1 mt-2'>Add to cart</button>:null}
-          {currentQuantity>0?<div className='flex justify-center items-center mt-2'>
-            <button onClick={() =>removeToCart(id)} className='bg-cyan-500  hover:bg-cyan-600 text-zinc-50 py-1 w-1/4'>-</button>
+          {currentQuantity===0?<button onClick={() =>addToCart(id)} className='block mx-auto mb-1 bg-emerald-600 text-zinc-50 p-1 mt-2'>Add to cart</button>:null}
+          {currentQuantity>0?<div className='flex justify-center items-center mt-2 mb-1'>
+            <button onClick={() =>removeToCart(id)} className='bg-cyan-500 hover:bg-cyan-600 text-zinc-50 py-1 w-1/4'>-</button>
             <span className='bg-zinc-100 w-1/4 text-center py-1'>{currentQuantity}</span>
             <button onClick={() =>addToCart(id)} className='bg-cyan-500 hover:bg-cyan-600 text-zinc-50 py-1 w-1/4'>+</button>
           </div>:null}
